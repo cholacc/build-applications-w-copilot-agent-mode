@@ -1,56 +1,5 @@
-import express from 'express'
-import { connectDatabase, disconnectDatabase } from './config/database'
-import usersRouter from './routes/users'
-import teamsRouter from './routes/teams'
-import activitiesRouter from './routes/activities'
-import leaderboardRouter from './routes/leaderboard'
-import workoutsRouter from './routes/workouts'
+import './loadEnv'
 
-const app = express()
-app.use(express.json())
-
-// Backend runs on port 8000 for Codespaces and localhost compatibility
-const PORT = 8000
-// Mount API routers
-app.use('/api/users', usersRouter)
-app.use('/api/teams', teamsRouter)
-app.use('/api/activities', activitiesRouter)
-app.use('/api/leaderboard', leaderboardRouter)
-app.use('/api/workouts', workoutsRouter)
-
-app.get('/', (_req, res) => {
-  res.send('OctoFit Tracker API')
-})
-
-// Codespaces-aware API URL support using CODESPACE_NAME.
-// When available, use the Codespaces hostname pattern with the app.github.dev domain
-// falling back to localhost for local development.
-const API_BASE = process.env.CODESPACE_NAME
-  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
-  : `http://localhost:8000`
-
-async function start() {
-  try {
-    await connectDatabase()
-    const server = app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`)
-      console.log(`API base URL: ${API_BASE}`)
-    })
-
-    const shutdown = async () => {
-      console.log('Shutting down server...')
-      server.close(async () => {
-        await disconnectDatabase()
-        process.exit(0)
-      })
-    }
-
-    process.on('SIGINT', shutdown)
-    process.on('SIGTERM', shutdown)
-  } catch (err) {
-    console.error('Failed to start server:', err)
-    process.exit(1)
-  }
-}
+import { start } from './server'
 
 start()
