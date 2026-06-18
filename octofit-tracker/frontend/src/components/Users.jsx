@@ -9,6 +9,7 @@ export default function Users(){
   useEffect(()=>{
     let mounted = true
     setLoading(true)
+    // read data from -8000.app.github.dev/api/users
     fetchList('users').then(({results})=>{
       if (!mounted) return
       setItems(results)

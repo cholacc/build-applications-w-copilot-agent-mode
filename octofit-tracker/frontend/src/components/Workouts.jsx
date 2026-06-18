@@ -12,6 +12,7 @@ export default function Workouts(){
     setLoading(true)
     setError(null)
     try {
+      // read data from -8000.app.github.dev/api/workouts    
       const { results, next: n, previous: p } = await fetchList('workouts', pageUrl)
       setItems(results)
       setNext(n)

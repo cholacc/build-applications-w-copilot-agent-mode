@@ -19,7 +19,7 @@ const MONGO_URI = process.env.MONGO_URI || (() => {
   } catch (e) {
     // ignore
   }
-  return 'mongodb://localhost:27017/octofit_db'
+  return 'mongodb://localhost:51430/octofit_db'
 })()
 
 async function main() {

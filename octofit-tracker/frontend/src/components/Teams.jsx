@@ -9,6 +9,7 @@ export default function Teams(){
   useEffect(()=>{
     let mounted = true
     setLoading(true)
+    // read data from -8000.app.github.dev/api/teams
     fetchList('teams').then(({results})=>{
       if (!mounted) return
       setItems(results)

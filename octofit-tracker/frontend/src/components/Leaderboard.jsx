@@ -9,6 +9,7 @@ export default function Leaderboard(){
   useEffect(()=>{
     let mounted = true
     setLoading(true)
+    // read data from -8000.app.github.dev/api/leaderboard
     fetchList('leaderboard').then(({results})=>{
       if (!mounted) return
       setItems(results)

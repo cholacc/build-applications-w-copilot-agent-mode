@@ -12,6 +12,7 @@ export default function Activities(){
     setLoading(true)
     setError(null)
     try {
+      // read activities from -8000.app.github.dev/api/activities
       const { results, next: n, previous: p } = await fetchList('activities', pageUrl)
       setItems(results)
       setNext(n)
