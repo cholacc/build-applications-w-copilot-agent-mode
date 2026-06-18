@@ -1,55 +1,33 @@
-# Build Applications with GitHub Copilot Agent Mode
+<div align="center">
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+# 🎉 Congratulations cholacc! 🎉
 
-Hey cholacc!
+<img src="https://octodex.github.com/images/welcometocat.png" height="200px" />
 
-Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
+### 🌟 You've successfully completed the exercise! 🌟
 
-Remember, it's self-paced so feel free to take a break! ☕️
+## 🚀 Share Your Success!
 
-[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/cholacc/build-applications-w-copilot-agent-mode/issues/1)
+**Show off your new skills and inspire others!**
 
-## Backend: Codespaces & Local Development
+<a href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20%22Build%20Applications%20with%20GitHub%20Copilot%20Agent%20Mode%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2Fcholacc%2Fbuild-applications-w-copilot-agent-mode%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20X-1da1f2?style=for-the-badge&logo=x&logoColor=white" alt="Share on X" />
+</a>
+<a href="https://bsky.app/intent/compose?text=I%20just%20completed%20the%20%22Build%20Applications%20with%20GitHub%20Copilot%20Agent%20Mode%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2Fcholacc%2Fbuild-applications-w-copilot-agent-mode%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20Bluesky-0085ff?style=for-the-badge&logo=bluesky&logoColor=white" alt="Share on Bluesky" />
+</a>
+<a href="https://www.linkedin.com/feed/?shareActive=true&text=I%20just%20completed%20the%20%22Build%20Applications%20with%20GitHub%20Copilot%20Agent%20Mode%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2Fcholacc%2Fbuild-applications-w-copilot-agent-mode%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20LinkedIn-0077b5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Share on LinkedIn" />
+</a>
 
-The backend API runs on port 8000 and supports both GitHub Codespaces and local development.
+### 🎯 What's Next?
 
-- Codespaces URL pattern: `https://$CODESPACE_NAME-8000.app.github.dev`
-- Local URL: `http://localhost:8000`
+**Keep the momentum going!**
 
-Environment variables (see `octofit-tracker/backend/.env.example`):
+[![](https://img.shields.io/badge/Return%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/cholacc/build-applications-w-copilot-agent-mode/issues/1)
+[![GitHub Skills](https://img.shields.io/badge/Explore%20GitHub%20Skills-000000?style=for-the-badge&logo=github&logoColor=white)](https://learn.github.com/skills)
 
-- `MONGO_URI` — MongoDB connection string (e.g. `mongodb://127.0.0.1:51430/`)
-- `DB_NAME` — optional database name used by the app (defaults to `octofit_db`)
-- `CODESPACE_NAME` — automatically set in Codespaces; used to construct the Codespaces hostname
-- `NODE_ENV` — `development` or `production`
+*There's no better way to learn than building things!* 🚀
 
-Quick commands (from repository root on Windows cmd):
-
-```cmd
-REM Start in-memory MongoDB (dev)
-npm --prefix octofit-tracker/backend run mongo:start
-
-REM Start backend in dev mode (ts-node-dev) — set MONGO_URI from .mongo_uri
-set /p MONGO_URI=<octofit-tracker/backend/.mongo_uri && npm --prefix octofit-tracker/backend run dev
-
-REM Seed database
-set /p MONGO_URI=<octofit-tracker/backend/.mongo_uri && npm --prefix octofit-tracker/backend run seed
-
-REM Verify endpoints
-curl -i http://localhost:8000/api/users
-curl -i http://localhost:8000/api/activities
-```
-
-If you want the backend to respect a custom `PORT` environment variable, update `octofit-tracker/backend/src/index.ts` accordingly.
-
-## Frontend: Vite environment variable
-
-The frontend expects a Vite environment variable named `VITE_CODESPACE_NAME` when running in Codespaces. This is used to construct backend API URLs of the form:
-
-```
-https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/[component]/
-```
-
-If `VITE_CODESPACE_NAME` is not set the frontend falls back to `http://localhost:8000/api/[component]/` to keep local development working. You can define `VITE_CODESPACE_NAME` in `.env.local` at the `octofit-tracker/frontend` folder (for example `VITE_CODESPACE_NAME=my-codespace`).
+</div>
 
