@@ -9,7 +9,8 @@ import workoutsRouter from './routes/workouts'
 const app = express()
 app.use(express.json())
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 8000
+// Backend runs on port 8000 for Codespaces and localhost compatibility
+const PORT = 8000
 // Mount API routers
 app.use('/api/users', usersRouter)
 app.use('/api/teams', teamsRouter)
@@ -21,10 +22,12 @@ app.get('/', (_req, res) => {
   res.send('OctoFit Tracker API')
 })
 
-// Codespaces-aware API URL support using CODESPACE_NAME
+// Codespaces-aware API URL support using CODESPACE_NAME.
+// When available, use the Codespaces hostname pattern with the app.github.dev domain
+// falling back to localhost for local development.
 const API_BASE = process.env.CODESPACE_NAME
-  ? `https://${process.env.CODESPACE_NAME}-${PORT}.githubpreview.dev`
-  : `http://localhost:${PORT}`
+  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
+  : `http://localhost:8000`
 
 async function start() {
   try {
