@@ -1,10 +1,22 @@
 import fs from 'fs'
 import path from 'path'
 
-function loadDotEnv(envPath = path.resolve(process.cwd(), '.env')) {
+function loadDotEnv(envPath?: string) {
   try {
-    if (!fs.existsSync(envPath)) return
-    const content = fs.readFileSync(envPath, 'utf8')
+    const candidates = [] as string[]
+    if (envPath) candidates.push(envPath)
+    // prefer process.cwd()/.env when available (covers running from inside backend)
+    candidates.push(path.resolve(process.cwd(), '.env'))
+    // fallback to package-root .env (this file lives in backend/src)
+    candidates.push(path.resolve(__dirname, '..', '.env'))
+
+    let foundPath: string | null = null
+    for (const p of candidates) {
+      if (fs.existsSync(p)) { foundPath = p; break }
+    }
+    if (!foundPath) return
+    console.log('Loaded environment from', foundPath)
+    const content = fs.readFileSync(foundPath, 'utf8')
     for (const line of content.split(/\r?\n/)) {
       const trimmed = line.trim()
       if (!trimmed || trimmed.startsWith('#')) continue

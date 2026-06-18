@@ -5,9 +5,25 @@ import teamsRouter from './routes/teams'
 import activitiesRouter from './routes/activities'
 import leaderboardRouter from './routes/leaderboard'
 import workoutsRouter from './routes/workouts'
+import loadDotEnv from './loadEnv'
 
+loadDotEnv()
 const app = express()
 app.use(express.json())
+
+// Simple CORS middleware for development frontend at localhost:5173
+app.use((req, res, next) => {
+  const origin = req.get('origin')
+  const allowedLocal = 'http://localhost:5173'
+  if (origin && (origin === allowedLocal || origin.startsWith('http://localhost:'))) {
+    res.header('Access-Control-Allow-Origin', origin)
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS')
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    res.header('Access-Control-Allow-Credentials', 'true')
+    if (req.method === 'OPTIONS') return res.sendStatus(204)
+  }
+  next()
+})
 
 // Backend port (can be overridden by PORT in .env)
 export const PORT = process.env.PORT ? Number(process.env.PORT) : 8000

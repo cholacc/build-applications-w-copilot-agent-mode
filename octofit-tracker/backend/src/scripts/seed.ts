@@ -9,7 +9,9 @@ import Activity from '../models/Activity'
 import Leaderboard from '../models/Leaderboard'
 import express from 'express'
 import supertest from 'supertest'
+import loadDotEnv from '../loadEnv'
 
+loadDotEnv()
 const MONGO_URI = process.env.MONGO_URI || (() => {
   try {
     const data = require('fs').readFileSync('.mongo_uri', 'utf8')

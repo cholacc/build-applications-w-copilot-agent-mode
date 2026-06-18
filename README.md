@@ -43,3 +43,13 @@ curl -i http://localhost:8000/api/activities
 
 If you want the backend to respect a custom `PORT` environment variable, update `octofit-tracker/backend/src/index.ts` accordingly.
 
+## Frontend: Vite environment variable
+
+The frontend expects a Vite environment variable named `VITE_CODESPACE_NAME` when running in Codespaces. This is used to construct backend API URLs of the form:
+
+```
+https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/[component]/
+```
+
+If `VITE_CODESPACE_NAME` is not set the frontend falls back to `http://localhost:8000/api/[component]/` to keep local development working. You can define `VITE_CODESPACE_NAME` in `.env.local` at the `octofit-tracker/frontend` folder (for example `VITE_CODESPACE_NAME=my-codespace`).
+

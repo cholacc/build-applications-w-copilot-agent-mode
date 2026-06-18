@@ -1,8 +1,14 @@
 import { MongoMemoryServer } from 'mongodb-memory-server'
 import fs from 'fs'
+import loadDotEnv from '../loadEnv'
 
 async function main() {
-  const mongod = await MongoMemoryServer.create()
+  const mongod = await MongoMemoryServer.create({
+    instance: {
+      port: Number(process.env.MONGO_PORT),
+      dbName: process.env.DB_NAME
+    }
+  })
   const uri = mongod.getUri()
   console.log('MongoDB Memory Server started at', uri)
 
@@ -24,6 +30,7 @@ async function main() {
   await new Promise(() => { })
 }
 
+loadDotEnv()
 main().catch((err) => {
   console.error('start-mongo error:', err)
   process.exit(1)
