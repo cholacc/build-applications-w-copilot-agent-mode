@@ -27,7 +27,7 @@ app.get('/', (_req, res) => {
 // When available, use the Codespaces hostname pattern with the app.github.dev domain
 // falling back to localhost for local development.
 export const API_BASE = process.env.CODESPACE_NAME
-  ? `https://${process.env.CODESPACE_NAME}-${PORT}.app.github.dev`
+  ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
   : `http://localhost:${PORT}`
 
 export async function start() {
