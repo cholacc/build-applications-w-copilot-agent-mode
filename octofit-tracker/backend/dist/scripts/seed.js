@@ -47,7 +47,17 @@ const Activity_1 = __importDefault(require("../models/Activity"));
 const Leaderboard_1 = __importDefault(require("../models/Leaderboard"));
 const express_1 = __importDefault(require("express"));
 const supertest_1 = __importDefault(require("supertest"));
-const MONGO_URI = 'mongodb://localhost:27017/octofit_db';
+const MONGO_URI = process.env.MONGO_URI || (() => {
+    try {
+        const data = require('fs').readFileSync('.mongo_uri', 'utf8');
+        if (data)
+            return data;
+    }
+    catch (e) {
+        // ignore
+    }
+    return 'mongodb://localhost:27017/octofit_db';
+})();
 async function main() {
     console.log('Seed the octofit_db database with test data');
     await mongoose_1.default.connect(MONGO_URI);
